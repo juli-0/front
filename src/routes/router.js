@@ -3,7 +3,6 @@ import MyTestNotFound from "../pages/templates/mytestnotfound/MyTestNotFound";
 import MyTestLayout from "../pages/templates/mytestlayout/MyTestLayout";
 import MyTestMainContainer from "../pages/templates/mytestmain/MyTestMainContainer";
 import MyTestContextContainer from "../pages/templates/mytestcontext/MyTestContextContainer";
-import MyTestRedux from "../pages/templates/mytestredux/MyTestRedux";
 import MyTestDocs from "../pages/templates/mytestdocs/MyTestDocs";
 import MyTestParameterRead from "../pages/templates/mytesturlparameter/MyTestParameterRead";
 import MyTestParameterContainer from "../pages/templates/mytesturlparameter/MyTestParameterContainer";
@@ -28,10 +27,6 @@ const router = createBrowserRouter([
       {
         path: "context", // == index: true
         element: <MyTestContextContainer />
-      },
-      {
-        path: "redux", // == index: true
-        element: <MyTestRedux />
       },
       {
         path: "url-parameter",
