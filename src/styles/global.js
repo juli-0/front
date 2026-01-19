@@ -91,6 +91,7 @@ const GlobalStyle = createGlobalStyle`
     font-display: swap;
   }
 
+  
   body {
     font-family: 'pretendard';
     /* font-weight: 900; */

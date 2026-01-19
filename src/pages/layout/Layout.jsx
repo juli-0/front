@@ -1,9 +1,9 @@
 import React from 'react';
+import Header from '../../components/header/Header';
 import { Outlet } from 'react-router-dom';
-import Header from '../../../components/header/Header';
-import Footer from '../../../components/footer/Footer';
+import Footer from '../../components/footer/Footer';
 
-const MyTestLayout = () => {
+const Layout = () => {
   return (
     <div>
       <Header/>
@@ -15,4 +15,4 @@ const MyTestLayout = () => {
   );
 };
 
-export default MyTestLayout;
+export default Layout;
