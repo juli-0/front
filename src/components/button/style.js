@@ -85,6 +85,9 @@ const backgroundColorCSS = {
   white: css`
     background-color: ${({ theme }) => theme.PALLETE.white};
   `,
+  transparent: css`
+    background-color: transparent;
+  `,
   gray01: css`
     background-color: ${({ theme }) => theme.PALLETE.gray.greyscale01};
   `,
@@ -99,6 +102,37 @@ const backgroundColorCSS = {
   `,
   gray05: css`
     background-color: ${({ theme }) => theme.PALLETE.gray.greyscale05};
+  `,
+};
+
+// 폰트 두께
+const fontWeightCSS = {
+  thin: css`
+    font-weight: ${({ theme }) => theme.FONT_WEIGHT.thin};
+  `,
+  extraLight: css`
+    font-weight: ${({ theme }) => theme.FONT_WEIGHT.extraLight};
+  `,
+  light: css`
+    font-weight: ${({ theme }) => theme.FONT_WEIGHT.light};
+  `,
+  regular: css`
+    font-weight: ${({ theme }) => theme.FONT_WEIGHT.regular};
+  `,
+  medium: css`
+    font-weight: ${({ theme }) => theme.FONT_WEIGHT.medium};
+  `,
+  semiBold: css`
+    font-weight: ${({ theme }) => theme.FONT_WEIGHT.semiBold};
+  `,
+  bold: css`
+    font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+  `,
+  extraBold: css`
+    font-weight: ${({ theme }) => theme.FONT_WEIGHT.extraBold};
+  `,
+  black: css`
+    font-weight: ${({ theme }) => theme.FONT_WEIGHT.black};
   `,
 };
 
@@ -174,7 +208,7 @@ const borderCSS = {
   white: css`
     border: 1px solid ${({ theme }) => theme.PALLETE.white};
   `,
-    error: css`
+  error: css`
     border: 1px solid ${({ theme }) => theme.PALLETE.error};
   `,
   sky: css`
@@ -194,6 +228,60 @@ const borderWidthCSS = {
     border-width: 3px;
   `,
 };
+
+// 폰트 라인 변형
+const lineHeightCSS = {
+  h1: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.h1};
+  `,
+  h2: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.h2};
+  `,
+  h3: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.h3};
+  `,
+  h4: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.h4};
+  `,
+  h5: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.h5};
+  `,
+  h6: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.h6};
+  `,
+  h7: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.h7};
+  `,
+  h8: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.h8};
+  `,
+  h9: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.h9};
+  `,
+  medium: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.medium};
+  `,
+  bttxt: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.bttxt};
+  `,
+  linktxt: css`
+    line-height: ${({ theme }) => theme.FONT_LINE.linktxt};
+  `,
+};
+
+// IconButton 내부 레이아웃 (아이콘 + 텍스트)
+const ButtonContent = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  ${({ $iconPosition }) =>
+    $iconPosition === "right" &&
+    css`
+      flex-direction: row-reverse;
+    `}
+`;
 
 const BaseButton = styled.button`
   display: inline-block;
@@ -251,7 +339,11 @@ const BaseButton = styled.button`
     opacity: 0.5;
     cursor: not-allowed;
   }
-  
+
+  /* 폰트 두께 */
+  ${({ fontWeight }) => fontWeight && fontWeightCSS[fontWeight]}
+  /* 폰트 라인 */
+  ${({ lineHeight }) => lineHeight && lineHeightCSS[lineHeight]}
   /* full width 옵션 */
   ${({ fullWidth }) =>
     fullWidth &&
@@ -260,4 +352,6 @@ const BaseButton = styled.button`
     `}
 `;
 
+
+export { BaseButton, ButtonContent };
 export default BaseButton;
