@@ -1,4 +1,5 @@
 import { useMemo, useState, useCallback } from "react";
+import MyPageTitle from "../../general/component/MyPageTitle";
 import BaseTable from "../../../../components/table/BaseTable";
 import BaseButton from "../../../../components/button/BaseButton";
 import UserEditModal from "./UserEditModal";
@@ -187,7 +188,9 @@ const UserList = () => {
 	);
 
 	return (
-		<div>
+		<div style={styles.page}>
+			<MyPageTitle title="사용자 관리" description="사용자 정보를 관리하세요" />
+
 			<BaseTable
 				data={SAMPLE_USERS}
 				columns={columns}
@@ -209,6 +212,12 @@ const UserList = () => {
 			/>
 		</div>
 	);
+};
+
+const styles = {
+	page: {
+		padding: "28px 32px 40px",
+	},
 };
 
 export default UserList;

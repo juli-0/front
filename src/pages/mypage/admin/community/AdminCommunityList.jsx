@@ -1,36 +1,40 @@
 import React, { useState } from "react";
+import MyPageTitle from "../../general/component/MyPageTitle";
+import MyPageTabMenu from "../../general/component/MyPageTabMenu";
 import PostManage from "./PostManage";
 import CommentManage from "./CommentManage";
-import S from "./style";
-
-const TABS = [
-	{ id: "posts", label: "게시글 관리" },
-	{ id: "comments", label: "댓글 관리" },
-];
 
 const AdminCommunityList = () => {
 	const [activeTab, setActiveTab] = useState("posts");
 
-	return (
-		<S.PageContainer>
-			<S.TabContainer>
-				{TABS.map((tab) => (
-					<S.TabButton
-						key={tab.id}
-						type="button"
-						$active={activeTab === tab.id}
-						onClick={() => setActiveTab(tab.id)}
-					>
-						{tab.label}
-					</S.TabButton>
-				))}
-			</S.TabContainer>
+	const tabs = [
+		{ id: "posts", label: "게시글 관리" },
+		{ id: "comments", label: "댓글 관리" },
+	];
 
-			<S.ContentSection>
+	return (
+		<div style={styles.page}>
+			<MyPageTitle title="커뮤니티 관리" description="커뮤니티 콘텐츠를 관리하세요" />
+			<MyPageTabMenu
+				tabs={tabs}
+				activeId={activeTab}
+				onChange={setActiveTab}
+			/>
+
+			<div style={styles.content}>
 				{activeTab === "posts" ? <PostManage /> : <CommentManage />}
-			</S.ContentSection>
-		</S.PageContainer>
+			</div>
+		</div>
 	);
+};
+
+const styles = {
+	page: {
+		padding: "28px 32px 40px",
+	},
+	content: {
+		marginTop: "10px",
+	},
 };
 
 export default AdminCommunityList;

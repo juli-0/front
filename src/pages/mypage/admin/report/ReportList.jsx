@@ -1,4 +1,5 @@
 import { useMemo, useState, useCallback } from "react";
+import MyPageTitle from "../../general/component/MyPageTitle";
 import BaseTable from "../../../../components/table/BaseTable";
 import BaseButton from "../../../../components/button/BaseButton";
 import ReportActionModal from "./ReportActionModal";
@@ -202,7 +203,9 @@ const ReportList = () => {
 	);
 
 	return (
-		<div>
+		<div style={styles.page}>
+			<MyPageTitle title="신고 관리" description="신고 내역을 관리하세요" />
+
 			{pendingCount > 0 && (
 				<S.PendingNotice>
 					<S.PendingNoticeIcon>💡</S.PendingNoticeIcon>
@@ -282,6 +285,12 @@ const ReportList = () => {
 			/>
 		</div>
 	);
+};
+
+const styles = {
+	page: {
+		padding: "28px 32px 40px",
+	},
 };
 
 export default ReportList;
