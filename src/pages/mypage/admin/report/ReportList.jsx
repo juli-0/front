@@ -1,6 +1,8 @@
-import React, { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback } from "react";
 import BaseTable from "../../../../components/table/BaseTable";
+import BaseButton from "../../../../components/button/BaseButton";
 import ReportActionModal from "./ReportActionModal";
+import S from "./style";
 
 const REPORT_STATUS = {
 	PENDING: "미처리",
@@ -202,26 +204,62 @@ const ReportList = () => {
 	return (
 		<div>
 			{pendingCount > 0 && (
-				<div>
-					<span>💡</span>
-					<span>
-						확인하지 않은 신고 내역이 <strong>{pendingCount}건</strong>{" "}
-						있습니다.
-					</span>
-				</div>
+				<S.PendingNotice>
+					<S.PendingNoticeIcon>💡</S.PendingNoticeIcon>
+					<S.PendingNoticeText>
+						확인하지 않은 신고 내역이 <strong>{pendingCount}건</strong> 있습니다.
+					</S.PendingNoticeText>
+				</S.PendingNotice>
 			)}
 
-			<div>
-				<button onClick={() => setCurrentFilter(REPORT_FILTER.ALL)}>
+			<S.FilterGroup>
+				<BaseButton
+					shape="pill"
+					size="linktxt"
+					padding="smallMedium"
+					variant={currentFilter === REPORT_FILTER.ALL ? "solid" : "outline"}
+					backgroundColor={
+						currentFilter === REPORT_FILTER.ALL ? "primary" : "white"
+					}
+					color={currentFilter === REPORT_FILTER.ALL ? "white" : "gray05"}
+					border={currentFilter === REPORT_FILTER.ALL ? "none" : "gray04"}
+					onClick={() => setCurrentFilter(REPORT_FILTER.ALL)}
+				>
 					전체
-				</button>
-				<button onClick={() => setCurrentFilter(REPORT_FILTER.PENDING)}>
+				</BaseButton>
+				<BaseButton
+					shape="pill"
+					size="linktxt"
+					padding="smallMedium"
+					variant={
+						currentFilter === REPORT_FILTER.PENDING ? "solid" : "outline"
+					}
+					backgroundColor={
+						currentFilter === REPORT_FILTER.PENDING ? "primary" : "white"
+					}
+					color={currentFilter === REPORT_FILTER.PENDING ? "white" : "gray05"}
+					border={currentFilter === REPORT_FILTER.PENDING ? "none" : "gray04"}
+					onClick={() => setCurrentFilter(REPORT_FILTER.PENDING)}
+				>
 					미처리
-				</button>
-				<button onClick={() => setCurrentFilter(REPORT_FILTER.PROCESSED)}>
+				</BaseButton>
+				<BaseButton
+					shape="pill"
+					size="linktxt"
+					padding="smallMedium"
+					variant={
+						currentFilter === REPORT_FILTER.PROCESSED ? "solid" : "outline"
+					}
+					backgroundColor={
+						currentFilter === REPORT_FILTER.PROCESSED ? "primary" : "white"
+					}
+					color={currentFilter === REPORT_FILTER.PROCESSED ? "white" : "gray05"}
+					border={currentFilter === REPORT_FILTER.PROCESSED ? "none" : "gray04"}
+					onClick={() => setCurrentFilter(REPORT_FILTER.PROCESSED)}
+				>
 					처리완료
-				</button>
-			</div>
+				</BaseButton>
+			</S.FilterGroup>
 
 			<BaseTable
 				data={filteredData}
